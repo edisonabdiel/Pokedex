@@ -18,7 +18,7 @@ let pokemonList = [
         Type: ['legendary', 'shock']
     },
     {
-        Name: Moltres,
+        Name: 'Moltres',
         Height: 2,
         Weight: 60,
         Type: ['legendary', 'fire']

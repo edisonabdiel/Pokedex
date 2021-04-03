@@ -1,26 +1,20 @@
-let myFavouriteFood = "Ramen";
-
-document.write(myFavouriteFood);
-
-alert("Hello World");
-
 let pokemonList = [
     {
-        Name: 'Articuno',
-        Height: 1.7,
-        Weight: 55.4,
-        Type: ['legendary', 'ice']
+        name: 'Articuno',
+        height: 1.7,
+        weight: 55.4,
+        types: ['legendary', 'ice']
     },
     {
-        Name: 'Zapdos',
-        Height: 1.6,
-        Weight: 52.6,
-        Type: ['legendary', 'shock']
+        name: 'Zapdos',
+        height: 1.6,
+        weight: 52.6,
+        types: ['legendary', 'shock']
     },
     {
-        Name: 'Moltres',
-        Height: 2,
-        Weight: 60,
-        Type: ['legendary', 'fire']
+        name: 'Moltres',
+        height: 2,
+        weight: 60,
+        types: ['legendary', 'fire']
     }
 ];

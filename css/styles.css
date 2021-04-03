@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-font-weight: 400;
+    --primary-font-size: 20px;
+    --primary-font-height: 1.6;
+  }
+  
+  body {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: var(--primary-font-weight);
+    font-size: var(--primary-font-size);
+    
+  }

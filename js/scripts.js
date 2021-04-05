@@ -29,3 +29,18 @@ for (let i = 0; i < pokemonList.length; i++) {
     }
 }
 
+sum = (a, b) => a + b;
+
+multiply = (a, b) => {
+    return (( b === 0) ? "Your're trying to multiply by zero" : a * b);
+}
+
+substract = (a, b) =>  a - b;
+
+divide = (a, b) => {
+    return ((b === 0) ? "You're trying to divide by zero" : a / b); 
+}
+
+console.log(multiply(10, 20))
+
+console.log(divide(70, 7))

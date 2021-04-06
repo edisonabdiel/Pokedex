@@ -21,17 +21,25 @@ let pokemonRep = (() => {
         }
     ];
 
-    function add(pokemon) { typeof (pokemon) === typeof (pokemonArr) ? pokemonArr.push(pokemon) : "Not a valid data type" }
+    function add(pokemon) { 
+        if (typeof (pokemon) === 'object') {
+          pokemonArr.push(pokemon)
+          console.log('pokemon added successfully')
+        } else {
+          console.log("Not a valid data type")
+        }
+      }
 
     function getAll(){ return pokemonArr};
 
     // Filters the list by name and returns the object that gets closer to the search input 
 
-    findPokemon = () => pokemonArr.filter((pokemon) => new RegExp('Lu').test(pokemon.name))
+    function findPokemon() { pokemonArr.filter((pokemon) => new RegExp('Lu').test(pokemon.name)) }
 
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        findPokemon: findPokemon
     };
 })();
 
@@ -42,13 +50,13 @@ pokemonRep.getAll().forEach((pokemon) => {
 });
 
 
-console.log(pokemonRep.add({
-    name: 'Lugia',
-    height: 1.6,
-    weight: 52.6,
-    types: ['legendary', 'shock']
-}));
 
-console.log(findPokemon());
+pokemonRep.add({
+    name: 'MeowTwo',
+    height: 2,
+    weight: 60,
+    types: ['legendary', 'fire']
+})
+
 
 console.log(pokemonRep.getAll())

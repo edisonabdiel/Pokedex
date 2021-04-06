@@ -61,9 +61,7 @@ findPokemon = () => pokemonList.filter((pokemon) => new RegExp('Mol').test(pokem
 
 //iterates through each position of the index, checking to meet the conditions by using a forEach()
 
-pokemonList.forEach((pokemon) => {
-    document.write('<p>' + pokemon.name + " : " + pokemon.height + '</p>');
-});
+pokemonList.forEach((pokemon) => document.write('<p>' + pokemon.name + " : " + pokemon.height + '</p>'));
 
 console.log(add({
     name: 'Lugia',

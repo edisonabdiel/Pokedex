@@ -31,9 +31,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 
 sum = (a, b) => a + b;
 
-multiply = (a, b) => {
-    return (( b === 0) ? "Your're trying to multiply by zero" : a * b);
-}
+multiply = (a, b) =>  a * b;
 
 substract = (a, b) =>  a - b;
 

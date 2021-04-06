@@ -1,3 +1,5 @@
+//initial array 
+
 let pokemonList = [
     {
         name: 'Articuno',
@@ -19,26 +21,55 @@ let pokemonList = [
     }
 ];
 
-//iterates through each position of the index, checking to meet the conditions
+// refactoring the pokemonList arr into a IIFE format
 
-for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height >= 2) {
-        document.write("<p>" + pokemonList[i].name + ' height: (' + pokemonList[i].height + ')' + " Wow! That's a big pokemon!" + "</p>")
-    } else {
-        document.write("<p>" + pokemonList[i].name + ' height: (' + `${pokemonList[i].height}` + ')' + "</p>")
-    }
-}
+pokemonRep = (() => {
+    let pokemonArr = [
+        {
+            name: 'Articuno',
+            height: 1.7,
+            weight: 55.4,
+            types: ['legendary', 'ice']
+        },
+        {
+            name: 'Zapdos',
+            height: 1.6,
+            weight: 52.6,
+            types: ['legendary', 'shock']
+        },
+        {
+            name: 'Moltres',
+            height: 2,
+            weight: 60,
+            types: ['legendary', 'fire']
+        }
+    ];
 
-sum = (a, b) => a + b;
+    add = (pokemon) => typeof(pokemon) === typeof(pokemonArr) ? pokemonArr.push(pokemon) : "Not a valid data type";
 
-multiply = (a, b) =>  a * b;
+    getAll = () => pokemonArr;
 
-substract = (a, b) =>  a - b;
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
 
-divide = (a, b) => {
-    return ((b === 0) ? "You're trying to divide by zero" : a / b); 
-}
+// Filters the list by name and returns the object that gets closer to the search input 
 
-console.log(multiply(10, 20))
+findPokemon = () => pokemonList.filter((pokemon) => new RegExp('Mol').test(pokemon.name))
 
-console.log(divide(70, 7))
+//iterates through each position of the index, checking to meet the conditions by using a forEach()
+
+pokemonList.forEach((pokemon) => {
+    document.write('<p>' + pokemon.name + " : " + pokemon.height + '</p>');
+});
+
+console.log(add({
+    name: 'Lugia',
+    height: 1.6,
+    weight: 52.6,
+    types: ['legendary', 'shock']
+}));
+
+console.log(findPokemon());

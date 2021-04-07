@@ -28,7 +28,7 @@ h2 {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     -webkit-transition-duration: 0.4s;
     width: 55%;
@@ -42,7 +42,7 @@ ul {
 
 @media all and (min-width: 150px) and (max-width: 400px) {
     .button-class {
-        font-size: 60%;
+        font-size: 80%;
         padding: 0px;
     }
 }

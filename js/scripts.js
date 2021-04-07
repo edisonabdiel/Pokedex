@@ -43,7 +43,7 @@ let pokemonRep = (() => {
         button.classList.add('button-class');
         listItem.appendChild(button);
         pokeList.appendChild(listItem);
-        button.addEventListener('click', showDetails(pokemon));
+        button.addEventListener('click', function(){showDetails(pokemon)});
     };
 
     let showDetails = (pokemon) => console.log(pokemon);

@@ -1,16 +1,48 @@
 * {
     box-sizing: border-box;
-  }
+}
 
-  :root {
+:root {
     --primary-font-weight: 400;
     --primary-font-size: 20px;
     --primary-font-height: 1.6;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'Bebas Neue', cursive;
     font-weight: var(--primary-font-weight);
     font-size: var(--primary-font-size);
-    
-  }
+
+}
+
+h2 {
+    margin-left: 40px;
+}
+
+.button-class {
+    font-family: 'Bebas Neue', cursive;
+    background-color: #b9b9b9;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    width: 55%;
+    height: 55%;
+}
+
+ul {
+    list-style-type: none;
+    margin: none;
+}
+
+@media all and (min-width: 150px) and (max-width: 400px) {
+    .button-class {
+        font-size: 60%;
+
+    }
+}

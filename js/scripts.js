@@ -1,25 +1,7 @@
 // refactoring the pokemonList arr into a IIFE format
 let pokemonRep = (() => {
-    let pokemonArr = [
-        {
-            name: 'Articuno',
-            height: 1.7,
-            weight: 55.4,
-            types: ['legendary', 'ice']
-        },
-        {
-            name: 'Zapdos',
-            height: 1.6,
-            weight: 52.6,
-            types: ['legendary', 'shock']
-        },
-        {
-            name: 'Moltres',
-            height: 2,
-            weight: 60,
-            types: ['legendary', 'fire']
-        }
-    ];
+    let pokemonArr = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     //adds a new pokemon to the array
 
@@ -46,24 +28,68 @@ let pokemonRep = (() => {
         button.addEventListener('click', function(){showDetails(pokemon)});
     };
 
-    let showDetails = (pokemon) => console.log(pokemon);
+    //show pokemon details on click of the button
+
+    let showDetails = (pokemon) => {
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+          });
+    };
+
+    //fetches data from the poke API and loads it into the (pokemon) token
+
+    function loadList() {
+        return fetch(apiUrl).then((res) => {
+          return res.json();
+        }).then((json) => {
+          json.results.forEach((item) => {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+          });
+        }).catch((e) => {
+          console.error(e);
+        })
+    };
+
+    //loads the details of a singular pokemon
+
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+          // Now we add the details to the item
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+      }
 
     return {
         add: add,
         getAll: getAll,
         findPokemon: findPokemon,
         addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
     };
 })();
 
 //iterates through each position of the index
 
-pokemonRep.getAll().forEach((pokemon) => pokemonRep.addListItem(pokemon));
+pokemonRep.loadList().then(() => {
+    pokemonRep.getAll().forEach((pokemon) => pokemonRep.addListItem(pokemon));   
+})
 
 //adds a new pokemon to the array
 
 pokemonRep.add({
-    name: 'MeowTwo',
+    name: 'Lugia',
     height: 2,
     weight: 60,
     types: ['legendary', 'fire']

@@ -15,8 +15,14 @@ body {
 
 }
 
-h2 {
-    margin-left: 40px;
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-item{
+    width: 13%;
 }
 
 .button-class {
@@ -38,10 +44,13 @@ h2 {
 ul {
     list-style-type: none;
     margin: none;
+    width: 50vh;
 }
 
 #modal-container {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #modal-container.is-visible {
@@ -53,7 +62,7 @@ ul {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
     /* to show it above other content */
     z-index: 999;
 
@@ -71,8 +80,8 @@ ul {
     box-sizing: border-box;
     background: #fff;
     padding: 15px;
-    width: 100%;
-    max-width: 700px;
+    width: 250px;
+    max-width: 100%;
     text-align: left;
 }
 
@@ -82,7 +91,7 @@ ul {
     border: 0;
     background: none;
     color: #777;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .modal h1 {
@@ -91,6 +100,10 @@ ul {
 
 .modal p {
     margin-bottom: 0;
+}
+
+.modal img {
+    width: 100%;
 }
 
 @media all and (min-width: 200px) and (max-width: 400px) {

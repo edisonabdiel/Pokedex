@@ -96,11 +96,12 @@ let pokemonRep = (() => {
         titleElement.innerText = pokemon.name;
 
         let contentElement = document.createElement('p');
-        contentElement.innerText = pokemon.height;
+        contentElement.innerText = "height:" + pokemon.height;
 
         let imgElement = document.createElement('img');
         let pokeImg = pokemon.imageUrl;
-        contentElement.innerText = pokeImg.src;
+        imgElement.setAttribute('src', pokeImg)
+        imgElement.setAttribute('alt', pokemon.name)    
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);

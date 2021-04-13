@@ -22,7 +22,7 @@ body {
 }
 
 .flex-item{
-    width: 13%;
+    /* width: 13%; */
 }
 
 .button-class {
@@ -43,7 +43,7 @@ body {
 
 ul {
     list-style-type: none;
-    margin: none;
+    margin-left: 7%;
     width: 50vh;
 }
 
@@ -82,7 +82,8 @@ ul {
     padding: 15px;
     width: 250px;
     max-width: 100%;
-    text-align: left;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
 }
 
 .modal-close {

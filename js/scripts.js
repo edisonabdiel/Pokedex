@@ -13,7 +13,7 @@ let pokemonRep = (() => {
 
     //returns the whole array
 
-    let getAll = () => pokemonArr ;
+    let getAll = () => pokemonArr;
 
     // Filters the list by name and returns the object that gets closer to the search input 
 
@@ -77,7 +77,8 @@ let pokemonRep = (() => {
 
     // creates, renders and then hides a modal 
 
-    let modalContainer = document.querySelector('#modal-container');
+    let modalContainer = document.createElement('div');
+    modalContainer.setAttribute('id', 'modal-container');
 
     const showModal = (pokemon) => {
         // Clear all existing modal content
@@ -89,7 +90,7 @@ let pokemonRep = (() => {
         // Add the new modal content
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
+        closeButtonElement.innerText = 'X';
         closeButtonElement.addEventListener('click', hideModal);
 
         let titleElement = document.createElement('h1');
@@ -101,7 +102,7 @@ let pokemonRep = (() => {
         let imgElement = document.createElement('img');
         let pokeImg = pokemon.imageUrl;
         imgElement.setAttribute('src', pokeImg)
-        imgElement.setAttribute('alt', pokemon.name)    
+        imgElement.setAttribute('alt', pokemon.name)
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
@@ -111,13 +112,13 @@ let pokemonRep = (() => {
         modalContainer.classList.add('is-visible');
     }
 
+    
+
     let hideModal = () => {
-        modalContainer.classList.remove('is-visible');
+        document.querySelector('.flex-container').removeChild(modalContainer)
     }
 
-    document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
-    });
+    document.querySelector('.flex-container').appendChild(modalContainer)
 
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {

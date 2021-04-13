@@ -109,7 +109,10 @@ let pokemonRep = (() => {
         modal.appendChild(contentElement);
         modal.appendChild(imgElement);
         modalContainer.appendChild(modal);
+        
         modalContainer.classList.add('is-visible');
+
+        document.querySelector('.flex-container').appendChild(modalContainer);
     }
 
     

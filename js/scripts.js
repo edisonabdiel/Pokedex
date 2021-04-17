@@ -26,8 +26,11 @@ let pokemonRep = (() => {
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add('button-class');
+        button.classList.add('button-class', 'btn', 'btn-outline-dark');
+        // button.setAttribute('data-toggle', modal);
+        button.setAttribute('data-target', pokeModal);
         listItem.appendChild(button);
+        listItem.classList.add('group-list-item');
         pokeList.appendChild(listItem);
         button.addEventListener('click', () => { showDetails(pokemon) });
     };
@@ -77,42 +80,72 @@ let pokemonRep = (() => {
 
     // creates, renders and then hides a modal 
 
-    let modalContainer = document.createElement('div');
-    modalContainer.setAttribute('id', 'modal-container');
+    // let modalContainer = document.createElement('div');
+    // modalContainer.setAttribute('id', 'modal-container');
 
     const showModal = (pokemon) => {
-        // Clear all existing modal content
-        modalContainer.innerHTML = '';
 
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        let modalBody = $('.modal-body');
+        let modalTitle = $('.modal-title');
 
-        // Add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'X';
-        closeButtonElement.addEventListener('click', hideModal);
+        modalBody.empty();
+        modalTitle.empty();
 
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = pokemon.name;
+        let nameElement = $('<h1>' + pokemon.name + '</h1>');
 
-        let contentElement = document.createElement('p');
-        contentElement.innerText = "height:" + pokemon.height;
+        let imgElement = $('<img>');
+        imgElement.addClass('modal-img', 'img-fluid');
+        imgElement.attr('src', pokemon.imageUrl);
 
-        let imgElement = document.createElement('img');
-        let pokeImg = pokemon.imageUrl;
-        imgElement.setAttribute('src', pokeImg)
-        imgElement.setAttribute('alt', pokemon.name)
+        let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
+        let typesElement = $('<ul>' + "types: " + pokemon.types + '</ul>');
+        typesElement.addClass('list-unstyled');
+        let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
 
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
-        modal.appendChild(imgElement);
-        modalContainer.appendChild(modal);
+        modalTitle.append(nameElement);
+        modalBody.append(imgElement);
+        modalBody.append(heightElement);
+        modalBody.append(weightElement);
+        modalBody.append(typesElement);
+
         
-        modalContainer.classList.add('is-visible');
 
-        document.querySelector('.flex-container').appendChild(modalContainer);
+
+
+
+
+        // Clear all existing modal content
+        // modalContainer.innerHTML = '';
+
+        // let modal = document.createElement('div');
+        // modal.classList.add('modal');
+
+        // // Add the new modal content
+        // let closeButtonElement = document.createElement('button');
+        // closeButtonElement.classList.add('modal-close', 'btn', 'btn-outline-danger');
+        // closeButtonElement.innerText = 'X';
+        // closeButtonElement.addEventListener('click', hideModal);
+
+        // let titleElement = document.createElement('h1');
+        // titleElement.innerText = pokemon.name;
+
+        // let contentElement = document.createElement('p');
+        // contentElement.innerText = "height:" + pokemon.height;
+
+        // let imgElement = document.createElement('img');
+        // let pokeImg = pokemon.imageUrl;
+        // imgElement.setAttribute('src', pokeImg)
+        // imgElement.setAttribute('alt', pokemon.name)
+
+        // modal.appendChild(closeButtonElement);
+        // modal.appendChild(titleElement);
+        // modal.appendChild(contentElement);
+        // modal.appendChild(imgElement);
+        // modalContainer.appendChild(modal);
+        
+        // modalContainer.classList.add('is-visible');
+
+        // document.querySelector('.flex-container').appendChild(modalContainer);
     }
 
     

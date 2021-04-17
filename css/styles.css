@@ -21,8 +21,8 @@ body {
     align-items: center;
 }
 
-.flex-item {
-    /* width: 13%; */
+a {
+color: white;
 }
 
 .button-class {
@@ -36,7 +36,6 @@ body {
     display: inline-block;
     font-size: 20px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s;
     width: 55%;
     height: 55%;
 }

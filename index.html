@@ -16,11 +16,11 @@
   <nav class="navbar navbar-light bg-dark">
     <a href="/index.html" class="navbar-brand"><img src="assets/icons8-pokeballs-48.png"></a>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-pokemon" onclick="findPokemon()">
+      <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
     </form>
   </nav>
-  <div class="flex-container">
+  <div class="flex-container container">
     <ul class='pokemon-list list-group'></ul>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pokeModal">
       Launch demo modal
@@ -41,8 +41,7 @@
             ...
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          
           </div>
         </div>
       </div>

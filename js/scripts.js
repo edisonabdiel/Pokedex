@@ -2,25 +2,15 @@
 let pokemonRep = (() => {
 
     let pokemonArr = [];
-
     // API
-
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-
     //adds a new pokemon to the array
-
     let add = (pokemon) => { (typeof (pokemon) === 'object') ? pokemonArr.push(pokemon) : console.log("Not a valid data type") };
-
     //returns the whole array
-
     let getAll = () => pokemonArr;
-
     // Filters the list by name and returns the object that gets closer to the search input 
-
     let findPokemon = () => { pokemonArr.filter((pokemon) => new RegExp('Lu').test(pokemon.name)) }
-
     //creates a button for each pokemon and shows its details on click
-
     let addListItem = (pokemon) => {
         let pokeList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
@@ -34,18 +24,14 @@ let pokemonRep = (() => {
         pokeList.appendChild(listItem);
         button.addEventListener('click', () => { showDetails(pokemon) });
     };
-
     //show pokemon details on click of the button
-
     let showDetails = (pokemon) => {
-        loadDetails(pokemon).then(() => {
+        loadPokemonData(pokemon).then(() => {
             showModal(pokemon);
             console.log(pokemon)
         });
     };
-
     //fetches data from the poke API and loads it into the (pokemon) token
-
     let loadList = () => {
         return fetch(apiUrl).then((res) => {
             return res.json();
@@ -62,28 +48,63 @@ let pokemonRep = (() => {
         })
     };
 
-    //loads the details of a singular pokemon
+    let loadPokemonData = async (pokemon) => {
+        // URL 1: https://pokeapi.co/api/v2/pokemon/[ID-Number] => ID, Name, Image, Height, Weight, Types
+        const url = pokemon.detailsUrl;
+        try {
+            let response = await fetch(url);
+            let details = await response.json();
 
-    let loadDetails = (item) => {
-        let url = item.detailsUrl;
-        return fetch(url).then(function (response) {
-            return response.json();
-        }).then(function (details) {
-            // Now we add the details to the item
-            item.imageUrl = details.sprites.front_default;
-            item.height = details.height;
-            item.types = details.types;
-        }).catch(function (e) {
+            // Pokémon ID
+            pokemon.id = details.id;
+            // Pokémon Name
+            pokemon.name = details.name;
+            // Pokémon Image
+            pokemon.imageUrl = details.sprites.other['official-artwork'].front_default;
+            // Pokémon Height
+            pokemon.height = details.height / 10 + " m";
+            // Pokémon Weight
+            pokemon.weight = details.weight  + " kgs";
+            // Pokémon Types
+            pokemon.types = [];
+            details.types.forEach((e) => {
+                pokemon.types.push(e.type.name)
+            });
+            // Pokémon Abilities
+            pokemon.abilities = [];
+            details.abilities.forEach((e) => {
+                pokemon.abilities.push(e.ability.name);
+            });
+
+            // URL 2: https://pokeapi.co/api/v2/pokemon-species/[ID-Number] => Specie, Description
+            const urlMoreData = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}`;
+            try {
+                response = await fetch(urlMoreData);
+                details = await response.json();
+
+                // Pokémon Specie ([7] = English)
+                pokemon.specie = details.genera[7].genus;
+                // Pokémon Description
+                const descriptionEng = details.flavor_text_entries.filter(
+                    (pokedexEnglish) => pokedexEnglish.language.name === 'en',
+                );
+                pokemon.description = descriptionEng[
+                    descriptionEng.length - 1
+                ].flavor_text.replace(/[\n \f]/g, ' ');
+            } catch (e) {
+                console.error(e);
+            }
+        } catch (e) {
             console.error(e);
-        });
+        }
     }
-
     // creates, renders and then hides a modal 
-
-    // let modalContainer = document.createElement('div');
-    // modalContainer.setAttribute('id', 'modal-container');
+    let modalContainer = document.createElement('div');
+    modalContainer.setAttribute('id', 'modal-container');
 
     const showModal = (pokemon) => {
+
+        let detailsUrl = pokemon.detailsUrl;
 
         let modalBody = $('.modal-body');
         let modalTitle = $('.modal-title');
@@ -98,8 +119,7 @@ let pokemonRep = (() => {
         imgElement.attr('src', pokemon.imageUrl);
 
         let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
-        let typesElement = $('<ul>' + "types: " + pokemon.types + '</ul>');
-        typesElement.addClass('list-unstyled');
+        let typesElement = $('<p>' + "types: " + pokemon.types + '</p>');
         let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
 
         modalTitle.append(nameElement);
@@ -108,8 +128,8 @@ let pokemonRep = (() => {
         modalBody.append(weightElement);
         modalBody.append(typesElement);
 
-        
 
+        console.log(detailsUrl)
 
 
 
@@ -142,25 +162,25 @@ let pokemonRep = (() => {
         // modal.appendChild(contentElement);
         // modal.appendChild(imgElement);
         // modalContainer.appendChild(modal);
-        
+
         // modalContainer.classList.add('is-visible');
 
         // document.querySelector('.flex-container').appendChild(modalContainer);
     }
 
-    
 
-    let hideModal = () => {
-        document.querySelector('.flex-container').removeChild(modalContainer)
-    }
 
-    document.querySelector('.flex-container').appendChild(modalContainer)
+    // let hideModal = () => {
+    //     document.querySelector('.flex-container').removeChild(modalContainer)
+    // }
 
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
+    // document.querySelector('.flex-container').appendChild(modalContainer)
+
+    // window.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+    //         hideModal();
+    //     }
+    // });
 
     modalContainer.addEventListener('click', (e) => {
         // Since this is also triggered when clicking INSIDE the modal container,
@@ -178,7 +198,7 @@ let pokemonRep = (() => {
         findPokemon: findPokemon,
         addListItem: addListItem,
         loadList: loadList,
-        loadDetails: loadDetails
+        loadPokemonData: loadPokemonData
     };
 })();
 

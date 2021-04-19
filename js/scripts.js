@@ -17,8 +17,8 @@ let pokemonRep = (() => {
         let button = document.createElement('button');
         button.innerText = pokemon.name;
         button.classList.add('button-class', 'btn', 'btn-outline-dark');
-        // button.setAttribute('data-toggle', modal);
-        button.setAttribute('data-target', pokeModal);
+        button.setAttribute('data-toggle', 'modal');
+        button.setAttribute('data-target', '#pokeModal');
         listItem.appendChild(button);
         listItem.classList.add('group-list-item');
         pokeList.appendChild(listItem);

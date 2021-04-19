@@ -9,7 +9,22 @@ let pokemonRep = (() => {
     //returns the whole array
     let getAll = () => pokemonArr;
     // Filters the list by name and returns the object that gets closer to the search input 
-    let findPokemon = () => { pokemonArr.filter((pokemon) => new RegExp('Lu').test(pokemon.name)) }
+    let findPokemon = () => {
+        let input, filter, ul, li, button, i, txtValue;
+        input = document.getElementById("search-pokemon");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("pokemons");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            button = li[i].getElementsByTagName("button")[0];
+            txtValue = button.textContent || button.innerText;
+            if (txtValue.indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    } 
     //creates a button for each pokemon and shows its details on click
     let addListItem = (pokemon) => {
         let pokeList = document.querySelector('.pokemon-list');
@@ -115,18 +130,21 @@ let pokemonRep = (() => {
         let nameElement = $('<h1>' + pokemon.name + '</h1>');
 
         let imgElement = $('<img>');
-        imgElement.addClass('modal-img', 'img-fluid');
+        imgElement.addClass('modal-img');
+        imgElement.addClass('img-fluid');
         imgElement.attr('src', pokemon.imageUrl);
 
         let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
         let typesElement = $('<p>' + "types: " + pokemon.types + '</p>');
         let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
+        let abilitiesElement = $('<p>' + "abilities " + pokemon.abilities + '</p>') 
 
         modalTitle.append(nameElement);
         modalBody.append(imgElement);
         modalBody.append(heightElement);
         modalBody.append(weightElement);
         modalBody.append(typesElement);
+        modalBody.append(abilitiesElement);
 
 
         console.log(detailsUrl)

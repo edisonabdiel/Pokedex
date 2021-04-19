@@ -3,8 +3,13 @@
 }
 
 :root {
+    --white: #fff;
+    --font-grey: #92999f;
+    --icon-background-grey: #33383b;
+    --dark-grey: #000;
+    --lighter-dark-grey: #2d3234;
     --primary-font-weight: 400;
-    --primary-font-size: 20px;
+    --primary-font-size: 16px;
     --primary-font-height: 1.6;
 }
 
@@ -12,7 +17,15 @@ body {
     font-family: 'Bebas Neue', cursive;
     font-weight: var(--primary-font-weight);
     font-size: var(--primary-font-size);
+    background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/09/All-Pokemon-Desktop-Background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
 
+.navbar {
+    color: var(--white);
+    background: var(--dark-grey);
 }
 
 .flex-container {
@@ -26,12 +39,12 @@ body {
 }
 
 a {
-color: white;
+    color: white;
 }
 
 .button-class {
     font-family: 'Bebas Neue', cursive;
-    background-color: #b9b9b9;
+    background-color: #b9b9b9a6;
     border: none;
     color: black;
     padding: 16px 32px;
@@ -50,64 +63,11 @@ ul {
     width: 50vh;
 }
 
-#modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#modal-container.is-visible {
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
-    /* to show it above other content */
-    z-index: 999;
-
-    /* to allow scrolling if the screen is not high enough*/
-    overflow: auto;
-
-    /* this is used to center the modal */
-    display: grid;
-    text-align: center;
-}
-
-.modal {
-    margin: auto;
-    display: inline-block;
-    box-sizing: border-box;
-    background: #fff;
-    padding: 15px;
-    width: 250px;
-    max-width: 100%;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    text-align: center;
-}
-
-.modal-close {
-    float: right;
-    -webkit-appearance: none;
-    border: 0;
-    background: none;
-    color: #777;
-    text-decoration: none;
-}
-
-.modal h1 {
-    margin-top: 0;
-}
-
-.modal p {
-    margin-bottom: 0;
-}
-
-.modal img {
-    width: 100%;
+#pokeModal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media all and (min-width: 200px) and (max-width: 400px) {
@@ -122,4 +82,86 @@ ul {
         padding: 10%;
         font-size: 75%;
     }
+}
+
+footer {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--white);
+    background: var(--dark-grey);
+}
+
+.footer-distributed {
+    display: flex;
+    background-color: var(--dark-grey);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 25px;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.footer-company-name {
+    color: var(--font-grey);
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-right {
+    width: 81%;
+}
+
+.footer-icons {
+    float: right;
+}
+
+.footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition-duration: 0.2s;
+    transition-property: opacity;
+
+    font-size: 20px;
+    color: var(--white);
+    text-align: center;
+    line-height: 35px;
+
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 880px) {
+    .footer-distributed {
+        font: bold 14px sans-serif;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: flex;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .main {
+        line-height: normal;
+        font-size: auto;
+    }
+
+}
+
+#twitter {
+    width: 70%;
+    height: 70%;
 }

@@ -13,40 +13,52 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-dark">
-    <a href="/index.html" class="navbar-brand"><img src="assets/icons8-pokeballs-48.png"></a>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-pokemon" onclick="findPokemon()">
-      <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
-    </form>
-  </nav>
-  <div class="flex-container container">
-    <div class="row">
-      <div class="col-sm-10"><ul class='pokemon-list list-group'></ul>
-       
+  <main>
+    <nav class="navbar navbar-light ">
+      <a href="/index.html" class="navbar-brand"><img src="assets/icons8-pokeballs-48.png"></a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-pokemon"
+          onclick="findPokemon()">
+        <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
+      </form>
+    </nav>
+    <div class="flex-container container row" >
+      <div class="col-lg-10">
+        <ul class='pokemon-list list-group'></ul>
+      </div>
     </div>
-  </div>
-  <div>
-    <div class="modal fade" id="pokeModal" tabindex="-1" role="dialog" aria-labelledby="pokeModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-          
+    <div>
+      <div class="modal fade" id="pokeModal" tabindex="-1" role="dialog" aria-labelledby="pokeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
+  <footer class="footer-distributed">
+    <p class="footer-company-name">EdisonAbdiel &copy; 2021</p>
+      <div class="footer-right"></div>
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/in/edison-abdiel-32467b1a7/" target="_blank"><img
+            src="assets/icons8-linkedin.svg" alt="linkedin"></a>
+            <a href="#" target="_blank"><img src="assets/icons8-twitter.gif" alt="twitter" id="twitter"></a>
+        <a href="https://github.com/edisonabdiel" target="_blank"><img src="assets/icons8-github.svg" alt="github"></a>
+      </div>
+  </footer>
   <script src="js/promise-polyfill.js"></script>
   <script src="js/fetch.umd.js"></script>
   <script src="js/scripts.js"></script>

@@ -26,6 +26,7 @@ body {
 .navbar {
     color: var(--white);
     background: var(--dark-grey);
+    margin-bottom: 40px;
 }
 
 .flex-container {

@@ -146,59 +146,7 @@ let pokemonRep = (() => {
         modalBody.append(typesElement);
         modalBody.append(abilitiesElement);
 
-
-        console.log(detailsUrl)
-
-
-
-
-        // Clear all existing modal content
-        // modalContainer.innerHTML = '';
-
-        // let modal = document.createElement('div');
-        // modal.classList.add('modal');
-
-        // // Add the new modal content
-        // let closeButtonElement = document.createElement('button');
-        // closeButtonElement.classList.add('modal-close', 'btn', 'btn-outline-danger');
-        // closeButtonElement.innerText = 'X';
-        // closeButtonElement.addEventListener('click', hideModal);
-
-        // let titleElement = document.createElement('h1');
-        // titleElement.innerText = pokemon.name;
-
-        // let contentElement = document.createElement('p');
-        // contentElement.innerText = "height:" + pokemon.height;
-
-        // let imgElement = document.createElement('img');
-        // let pokeImg = pokemon.imageUrl;
-        // imgElement.setAttribute('src', pokeImg)
-        // imgElement.setAttribute('alt', pokemon.name)
-
-        // modal.appendChild(closeButtonElement);
-        // modal.appendChild(titleElement);
-        // modal.appendChild(contentElement);
-        // modal.appendChild(imgElement);
-        // modalContainer.appendChild(modal);
-
-        // modalContainer.classList.add('is-visible');
-
-        // document.querySelector('.flex-container').appendChild(modalContainer);
     }
-
-
-
-    // let hideModal = () => {
-    //     document.querySelector('.flex-container').removeChild(modalContainer)
-    // }
-
-    // document.querySelector('.flex-container').appendChild(modalContainer)
-
-    // window.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-    //         hideModal();
-    //     }
-    // });
 
     modalContainer.addEventListener('click', (e) => {
         // Since this is also triggered when clicking INSIDE the modal container,

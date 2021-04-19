@@ -71,6 +71,10 @@ ul {
     transform: translate(-50%, -50%);
 }
 
+#pokeModal p {
+    font-size: 20px;
+}
+
 @media all and (min-width: 200px) and (max-width: 400px) {
     .button-class {
         padding: 10%;

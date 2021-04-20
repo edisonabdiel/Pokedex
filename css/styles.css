@@ -94,7 +94,7 @@ ul {
 
 #pokeModal p {
     font-size: 20px;
-    color: blanchedalmond;
+    color: var(--font-grey);
 }
 
 @media all and (min-width: 200px) and (max-width: 400px) {
@@ -140,7 +140,11 @@ footer {
 }
 
 .footer-distributed .footer-right {
-    width: 81%;
+    width: 78%;
+}
+
+.footer-right{
+    margin-left: 5px;
 }
 
 .footer-icons {
@@ -188,7 +192,7 @@ footer {
 
 }
 
-#twitter {
+#twitter, #facebook {
     width: 70%;
     height: 70%;
 }

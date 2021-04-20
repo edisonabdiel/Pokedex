@@ -8,23 +8,6 @@ let pokemonRep = (() => {
     let add = (pokemon) => { (typeof (pokemon) === 'object') ? pokemonArr.push(pokemon) : console.log("Not a valid data type") };
     //returns the whole array
     let getAll = () => pokemonArr;
-    // Filters the list by name and returns the object that gets closer to the search input 
-    let findPokemon = () => {
-        let input, filter, ul, li, button, i, txtValue;
-        input = document.getElementById("search-pokemon");
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("pokemons");
-        li = ul.getElementsByTagName("li");
-        for (i = 0; i < li.length; i++) {
-            button = li[i].getElementsByTagName("button")[0];
-            txtValue = button.textContent || button.innerText;
-            if (txtValue.indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-    } 
     //creates a button for each pokemon and shows its details on click
     let addListItem = (pokemon) => {
         let pokeList = document.querySelector('.pokemon-list');
@@ -79,7 +62,7 @@ let pokemonRep = (() => {
             // Pokémon Height
             pokemon.height = details.height / 10 + " m";
             // Pokémon Weight
-            pokemon.weight = details.weight  + " kgs";
+            pokemon.weight = details.weight + " kgs";
             // Pokémon Types
             pokemon.types = [];
             details.types.forEach((e) => {
@@ -127,6 +110,7 @@ let pokemonRep = (() => {
 
         modalBody.empty();
         modalTitle.empty();
+        modalFooter.empty();
 
         let nameElement = $('<h1>' + pokemon.name + '</h1>');
 
@@ -134,11 +118,13 @@ let pokemonRep = (() => {
         imgElement.addClass('modal-img');
         imgElement.addClass('img-fluid');
         imgElement.attr('src', pokemon.imageUrl);
+        imgElement.attr('alt', `Image of ${pokemon.name}`);
 
         let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
         let typesElement = $('<p>' + "types: " + pokemon.types + '</p>');
         let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
-        let abilitiesElement = $('<p>' + "abilities: " + pokemon.abilities + '</p>') 
+        let abilitiesElement = $('<p>' + "abilities: " + pokemon.abilities + '</p>')
+        let descriptionElement = $('<p>' + pokemon.description + '</p>')
 
         modalTitle.append(nameElement);
         modalBody.append(imgElement);
@@ -146,18 +132,24 @@ let pokemonRep = (() => {
         modalBody.append(weightElement);
         modalBody.append(typesElement);
         modalBody.append(abilitiesElement);
+        modalFooter.append(descriptionElement);
 
     }
 
-    modalContainer.addEventListener('click', (e) => {
-        // Since this is also triggered when clicking INSIDE the modal container,
-        // We only want to close if the user clicks directly on the overlay
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
+    // Filters the list by name and returns the object that gets closer to the search input 
+    let findPokemon = (pokemon) => {
+        input = document.getElementById('search-pokemon');
+        let filterPokemons = (event) => {
+            keyword = input.value.toLowerCase();
+            filtered_pokemon = pokemon.filter((poke) => {
+                poke = poke.toLowerCase();
+                return poke.indexOf(keyword) > -1;
+            });
+            addListItem(filtered_pokemon);
         }
-    });
-
+        input.addEventListener('keyup', filterPokemons);
+        console.log(filtered_pokemon)
+    }
 
     return {
         add: add,
@@ -170,19 +162,8 @@ let pokemonRep = (() => {
 })();
 
 //iterates through each position of the index
-
 pokemonRep.loadList().then(() => {
     pokemonRep.getAll().forEach((pokemon) => pokemonRep.addListItem(pokemon));
 })
-
-//adds a new pokemon to the array
-
-pokemonRep.add({
-    name: 'Lugia',
-    height: 2,
-    weight: 60,
-    types: ['legendary', 'fire']
-});
-
 
 console.log(pokemonRep.getAll());

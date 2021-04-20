@@ -9,17 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="dist/minified.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
   <main>
     <nav class="navbar navbar-light ">
-      <a href="/index.html" class="navbar-brand "><img alt="pokeball" src="assets/icons8-pokeballs-48.png"></a>
+      <a href="/index.html" class="navbar-brand ">
+        <img alt="pikachu" src="assets/pikachu.png">
+        <img alt="squirtle" src="assets/squirtle.png"> 
+        <img alt="bulbasaur" src="assets/bulbasaur.png"> 
+        <img alt="charmander" src="assets/charmander.png">
+      </a>
       <form class="form-inline">
         <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" id="search-pokemon"
-          onclick="findPokemon()">
-        <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
+          >
+        <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/pokedex.png" alt="search button" onclick="findPokemon()"></button>
       </form>
     </nav>
     <div class="flex-container pokedex">
@@ -33,12 +38,15 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="pokeModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="pokeModalLabel">...</h5>
               <button type="button" class="close btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
               ...
             </div>
           </div>
@@ -48,7 +56,7 @@
   </main>
   <footer class="footer-distributed">
     <p class="footer-company-name">EdisonAbdiel &copy; 2021</p>
-    <div class="footer-right"></div>
+    <div class="footer-right"><img src="assets/love-pokemon.png" alt="search button" onclick="findPokemon()"></div>
     <div class="footer-icons">
       <a href="https://www.linkedin.com/in/edison-abdiel-32467b1a7/" target="_blank"><img
           src="assets/icons8-linkedin.svg" alt="linkedin"></a>
@@ -59,7 +67,7 @@
   </footer>
   <script src="js/promise-polyfill.js"></script>
   <script src="js/fetch.umd.js"></script>
-  <script src="dist/minified.js"></script>
+  <script src="js/scripts.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

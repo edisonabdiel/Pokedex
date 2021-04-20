@@ -123,6 +123,7 @@ let pokemonRep = (() => {
 
         let modalBody = $('.modal-body');
         let modalTitle = $('.modal-title');
+        let modalFooter = $('.modal-footer');
 
         modalBody.empty();
         modalTitle.empty();
@@ -137,7 +138,7 @@ let pokemonRep = (() => {
         let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
         let typesElement = $('<p>' + "types: " + pokemon.types + '</p>');
         let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
-        let abilitiesElement = $('<p>' + "abilities " + pokemon.abilities + '</p>') 
+        let abilitiesElement = $('<p>' + "abilities: " + pokemon.abilities + '</p>') 
 
         modalTitle.append(nameElement);
         modalBody.append(imgElement);

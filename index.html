@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pokedex</title>
+  <title>PokeDex</title>
   <link rel="shortcut icon" type="image/ico" href="assets/pokeBall.png">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -15,15 +15,15 @@
 <body>
   <main>
     <nav class="navbar navbar-light ">
-      <a href="/index.html" class="navbar-brand"><img src="assets/icons8-pokeballs-48.png"></a>
+      <a href="/index.html" class="navbar-brand "><img alt="pokeball" src="assets/icons8-pokeballs-48.png"></a>
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-pokemon"
+        <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" id="search-pokemon"
           onclick="findPokemon()">
         <button class="btn  my-2 my-sm-0" type="submit"><img src="assets/icons8-red-team-48.png" alt=""></button>
       </form>
     </nav>
-    <div class="flex-container container row" >
-      <div class="col-lg-10">
+    <div class="flex-container pokedex" >
+      <div class="pokemons">
         <ul class='pokemon-list list-group'></ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
 // IIFE format
+let pokeList = document.querySelector('.pokemon-list');
 let pokemonRep = (() => {
-
     let pokemonArr = [];
     // API
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -10,7 +10,6 @@ let pokemonRep = (() => {
     let getAll = () => pokemonArr;
     //creates a button for each pokemon and shows its details on click
     let addListItem = (pokemon) => {
-        let pokeList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerText = pokemon.name;
@@ -45,14 +44,12 @@ let pokemonRep = (() => {
             console.error(e);
         })
     };
-
     let loadPokemonData = async (pokemon) => {
         // URL 1: https://pokeapi.co/api/v2/pokemon/[ID-Number] => ID, Name, Image, Height, Weight, Types
         const url = pokemon.detailsUrl;
         try {
             let response = await fetch(url);
             let details = await response.json();
-
             // Pokémon ID
             pokemon.id = details.id;
             // Pokémon Name
@@ -73,13 +70,11 @@ let pokemonRep = (() => {
             details.abilities.forEach((e) => {
                 pokemon.abilities.push(e.ability.name);
             });
-
             // URL 2: https://pokeapi.co/api/v2/pokemon-species/[ID-Number] => Specie, Description
             const urlMoreData = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}`;
             try {
                 response = await fetch(urlMoreData);
                 details = await response.json();
-
                 // Pokémon Specie ([7] = English)
                 pokemon.specie = details.genera[7].genus;
                 // Pokémon Description
@@ -99,33 +94,25 @@ let pokemonRep = (() => {
     // creates, renders and then hides a modal 
     let modalContainer = document.createElement('div');
     modalContainer.setAttribute('id', 'modal-container');
-
     const showModal = (pokemon) => {
-
         let detailsUrl = pokemon.detailsUrl;
-
         let modalBody = $('.modal-body');
         let modalTitle = $('.modal-title');
         let modalFooter = $('.modal-footer');
-
         modalBody.empty();
         modalTitle.empty();
         modalFooter.empty();
-
         let nameElement = $('<h1>' + pokemon.name + '</h1>');
-
         let imgElement = $('<img>');
         imgElement.addClass('modal-img');
         imgElement.addClass('img-fluid');
         imgElement.attr('src', pokemon.imageUrl);
         imgElement.attr('alt', `Image of ${pokemon.name}`);
-
         let heightElement = $('<p>' + "height: " + pokemon.height + '</p>');
         let typesElement = $('<p>' + "types: " + pokemon.types + '</p>');
         let weightElement = $('<p>' + "weight: " + pokemon.weight + '</p>');
         let abilitiesElement = $('<p>' + "abilities: " + pokemon.abilities + '</p>')
         let descriptionElement = $('<p>' + pokemon.description + '</p>')
-
         modalTitle.append(nameElement);
         modalBody.append(imgElement);
         modalBody.append(heightElement);
@@ -133,37 +120,30 @@ let pokemonRep = (() => {
         modalBody.append(typesElement);
         modalBody.append(abilitiesElement);
         modalFooter.append(descriptionElement);
-
     }
-
-    // Filters the list by name and returns the object that gets closer to the search input 
-    let findPokemon = (pokemon) => {
-        input = document.getElementById('search-pokemon');
-        let filterPokemons = (event) => {
-            keyword = input.value.toLowerCase();
-            filtered_pokemon = pokemon.filter((poke) => {
-                poke = poke.toLowerCase();
-                return poke.indexOf(keyword) > -1;
-            });
-            addListItem(filtered_pokemon);
-        }
-        input.addEventListener('keyup', filterPokemons);
-        console.log(filtered_pokemon)
-    }
-
     return {
         add: add,
         getAll: getAll,
-        findPokemon: findPokemon,
         addListItem: addListItem,
         loadList: loadList,
         loadPokemonData: loadPokemonData
     };
 })();
 
+
+let input = document.getElementById('search-pokemon');
+pokemonData = []
 //iterates through each position of the index
 pokemonRep.loadList().then(() => {
-    pokemonRep.getAll().forEach((pokemon) => pokemonRep.addListItem(pokemon));
+    pokemonData = pokemonRep.getAll()
+    pokemonData.forEach((pokemon) => pokemonRep.addListItem(pokemon));
+    input.addEventListener('keyup', () => {
+        pokeList.innerHTML = ''
+        keyword = input.value.toLowerCase();
+        const filtered_pokemon = pokemonData.filter((poke) => {
+            pokee = poke.name.toLowerCase();
+            return pokee.indexOf(keyword) > -1;
+        });
+        filtered_pokemon.forEach((pokemon) => pokemonRep.addListItem(pokemon));
+    });
 })
-
-console.log(pokemonRep.getAll());

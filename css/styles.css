@@ -23,6 +23,10 @@ body {
     background-position: center;
 }
 
+main {
+    min-height: calc(100vh - 78px);
+}
+
 .pokedex {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

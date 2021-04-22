@@ -147,4 +147,3 @@ pokemonRep.loadList().then(() => {
         filtered_pokemon.forEach((pokemon) => pokemonRep.addListItem(pokemon));
     });
 })
-
